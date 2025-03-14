@@ -1,0 +1,32 @@
+{
+  "name": "ap-lib/caster-scheme",
+  "description": "AP\\Caster\\Scheme is a plugins for caster for casting objects based on scheme",
+  "type": "library",
+  "homepage": "https://github.com/ap-lib/caster-scheme",
+  "license": "MIT",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "authors": [
+    {
+      "name": "Anton Panfilov"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "AP\\Caster\\Scheme\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "AP\\Caster\\Scheme\\Tests\\": "tests/"
+    }
+  },
+  "require": {
+    "php": "^8.3",
+    "ap-lib/caster": "dev-main",
+    "ap-lib/scheme": "dev-main"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "10.5.*"
+  }
+}
