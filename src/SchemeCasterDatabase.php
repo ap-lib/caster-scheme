@@ -8,7 +8,7 @@ use AP\ErrorNode\Error;
 use AP\Scheme\ToObject;
 use AP\Scheme\ToObjectFromDatabase;
 
-class SchemeCasterFromDatabase implements CasterInterface
+class SchemeCasterDatabase implements CasterInterface
 {
     /**
      * Attempts to cast a given value to the expected type.
