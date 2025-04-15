@@ -34,19 +34,11 @@ class SchemeCasterDatabase implements CasterInterface
     ): bool|array
     {
         if (class_exists($expected) && is_subclass_of($expected, ToObjectFromDatabase::class)) {
-            try {
-                $el = ($expected)::toObjectFromDatabase($el);
-            } catch (ThrowableErrors $e) {
-                return $e->getErrors();
-            }
+            $el = ($expected)::toObjectFromDatabase($el);
             return true;
         }
         if (class_exists($expected) && is_subclass_of($expected, ToObject::class)) {
-            try {
-                $el = ($expected)::toObject($el);
-            } catch (ThrowableErrors $e) {
-                return $e->getErrors();
-            }
+            $el = ($expected)::toObject($el);
             return true;
         }
         return false;
