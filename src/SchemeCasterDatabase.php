@@ -5,6 +5,7 @@ namespace AP\Caster\Scheme;
 use AP\Caster\CasterInterface;
 use AP\Context\Context;
 use AP\ErrorNode\Error;
+use AP\ErrorNode\ThrowableErrors;
 use AP\Scheme\ToObject;
 use AP\Scheme\ToObjectFromDatabase;
 
@@ -33,11 +34,19 @@ class SchemeCasterDatabase implements CasterInterface
     ): bool|array
     {
         if (class_exists($expected) && is_subclass_of($expected, ToObjectFromDatabase::class)) {
-            $el = ($expected)::toObjectFromDatabase($el);
+            try {
+                $el = ($expected)::toObjectFromDatabase($el);
+            } catch (ThrowableErrors $e) {
+                return $e->getErrors();
+            }
             return true;
         }
         if (class_exists($expected) && is_subclass_of($expected, ToObject::class)) {
-            $el = ($expected)::toObject($el);
+            try {
+                $el = ($expected)::toObject($el);
+            } catch (ThrowableErrors $e) {
+                return $e->getErrors();
+            }
             return true;
         }
         return false;
