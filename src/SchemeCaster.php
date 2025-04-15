@@ -33,7 +33,11 @@ class SchemeCaster implements CasterInterface
     ): bool|array
     {
         if (class_exists($expected) && is_subclass_of($expected, ToObject::class)) {
-            $el = ($expected)::toObject($el);
+            try {
+                $el = ($expected)::toObject($el);
+                return true;
+            } catch (ThrowableErrors) {
+            }
         }
         return false;
     }
