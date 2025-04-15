@@ -37,14 +37,16 @@ class SchemeCasterDatabase implements CasterInterface
             try {
                 $el = ($expected)::toObjectFromDatabase($el);
                 return true;
-            } catch (ThrowableErrors) {
+            } catch (ThrowableErrors $e) {
+                return $e->getErrors();
             }
         }
         if (class_exists($expected) && is_subclass_of($expected, ToObject::class)) {
             try {
                 $el = ($expected)::toObject($el);
                 return true;
-            } catch (ThrowableErrors) {
+            } catch (ThrowableErrors $e) {
+                return $e->getErrors();
             }
         }
         return false;

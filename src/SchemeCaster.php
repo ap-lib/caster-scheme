@@ -36,7 +36,8 @@ class SchemeCaster implements CasterInterface
             try {
                 $el = ($expected)::toObject($el);
                 return true;
-            } catch (ThrowableErrors) {
+            } catch (ThrowableErrors $e) {
+                return $e->getErrors();
             }
         }
         return false;
